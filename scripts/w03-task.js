@@ -71,17 +71,21 @@ document.querySelector("#divideNumbers").addEventListener("click", divideNumbers
 document.querySelector("#divideNumbers").addEventListener("click", divideNumbers);
 
 // Event Listener for Get Total Due Button
-document.querySelector("#getTotalDue").addEventListener("click", function () {
-  let subtotal = Number(document.querySelector("#subtotal").value);
-  let applyDiscount = document.querySelector("#membership").checked;
-
-  if (applyDiscount) {
-      // Apply 20% discount if membership checkbox is checked
-      subtotal *= 0.8;
-  }
-
-  // Display the total due (after applying any discount)
-  alert("Total Due: $" + subtotal.toFixed(2));
+document.getElementById('getTotal').addEventListener('click', function() {
+  // Get the subtotal value entered by the user
+  const subtotal = parseFloat(document.getElementById('subtotal').value);
+  
+  // Check if the membership checkbox is checked
+  const isMember = document.getElementById('member').checked;
+  
+  // Apply discount if the user is a member
+  const discount = isMember ? 0.2 : 0; // 20% discount if the user is a member
+  
+  // Calculate total due
+  const total = subtotal - (subtotal * discount);
+  
+  // Update the total span with the calculated total
+  document.getElementById('total').textContent = `$ ${total.toFixed(2)}`;
 });
 
 /* ARRAY METHODS - Functional Programming */
